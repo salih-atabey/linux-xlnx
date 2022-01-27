@@ -1,0 +1,9 @@
+
+# This file exists solely to be include in Kconfig.adi
+# It's a bit of hurry-ed-up job; many symbols need to be depended
+# on I2C or SPI, but that can be done later; the ADI image has
+# these symbols enabled anyway
+
+config IIO_ALL_ADI_DRIVERS
+	tristate "Build all Analog Devices IIO Drivers"
+	select AD9528
