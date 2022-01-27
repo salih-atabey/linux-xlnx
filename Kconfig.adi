@@ -1,0 +1,8 @@
+
+# This file exists solely to be include in the main Kconfig
+
+config KERNEL_ALL_ADI_DRIVERS
+	tristate "Build all Analog Devices Kernel Drivers"
+	select IIO
+
+source "drivers/iio/Kconfig.adi"
