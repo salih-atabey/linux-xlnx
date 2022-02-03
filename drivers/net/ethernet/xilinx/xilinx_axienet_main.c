@@ -1697,7 +1697,7 @@ static int axienet_mii_init(struct net_device *ndev)
 	 * Hold MDIO bus lock to avoid MDIO accesses during the reset.
 	 */
 
-	mutex_lock(&lp->mii_bus->mdio_lock);
+	axienet_lock_mii(lp);
 	ret = axienet_mdio_wait_until_ready(lp);
 	if (ret < 0)
 		return ret;
@@ -1705,7 +1705,7 @@ static int axienet_mii_init(struct net_device *ndev)
 	axienet_device_reset(ndev);
 	ret = axienet_mdio_enable(lp);
 	ret = axienet_mdio_wait_until_ready(lp);
-	mutex_unlock(&lp->mii_bus->mdio_lock);
+	axienet_unlock_mii(lp);
 	if (ret < 0)
 		return ret;
 
@@ -2019,7 +2019,7 @@ static int axienet_stop(struct net_device *ndev)
 			/* Do a reset to ensure DMA is really stopped */
 			if (lp->axienet_config->mactype != XAXIENET_10G_25G &&
 			    lp->axienet_config->mactype != XAXIENET_MRMAC) {
-				mutex_lock(&lp->mii_bus->mdio_lock);
+				axienet_lock_mii(lp);
 				axienet_mdio_disable(lp);
 			}
 
@@ -2028,7 +2028,7 @@ static int axienet_stop(struct net_device *ndev)
 			if (lp->axienet_config->mactype != XAXIENET_10G_25G &&
 			    lp->axienet_config->mactype != XAXIENET_MRMAC) {
 				axienet_mdio_enable(lp);
-				mutex_unlock(&lp->mii_bus->mdio_lock);
+				axienet_unlock_mii(lp);
 			}
 			free_irq(q->tx_irq, ndev);
 		}
