@@ -382,7 +382,7 @@ void __maybe_unused axienet_dma_err_handler(unsigned long data)
 				       ~(XAE_OPTION_TXEN | XAE_OPTION_RXEN));
 
 	if (lp->axienet_config->mactype != XAXIENET_10G_25G) {
-		mutex_lock(&lp->mii_bus->mdio_lock);
+		axienet_lock_mii(lp);
 		axienet_mdio_disable(lp);
 		axienet_mdio_wait_until_ready(lp);
 		/* Disable the MDIO interface till Axi Ethernet Reset is
@@ -398,7 +398,7 @@ void __maybe_unused axienet_dma_err_handler(unsigned long data)
 	if (lp->axienet_config->mactype != XAXIENET_10G_25G) {
 		axienet_mdio_enable(lp);
 		axienet_mdio_wait_until_ready(lp);
-		mutex_unlock(&lp->mii_bus->mdio_lock);
+		axienet_unlock_mii(lp);
 	}
 
 	for (i = 0; i < lp->tx_bd_num; i++) {
