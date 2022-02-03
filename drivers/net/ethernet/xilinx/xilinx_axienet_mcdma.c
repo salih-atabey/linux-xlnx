@@ -592,7 +592,7 @@ void __maybe_unused axienet_mcdma_err_handler(unsigned long data)
 
 	if (lp->axienet_config->mactype != XAXIENET_10G_25G &&
 	    lp->axienet_config->mactype != XAXIENET_MRMAC) {
-		mutex_lock(&lp->mii_bus->mdio_lock);
+		axienet_lock_mii(lp);
 		/* Disable the MDIO interface till Axi Ethernet Reset is
 		 * Completed. When we do an Axi Ethernet reset, it resets the
 		 * Complete core including the MDIO. So if MDIO is not disabled
@@ -609,7 +609,7 @@ void __maybe_unused axienet_mcdma_err_handler(unsigned long data)
 	    lp->axienet_config->mactype != XAXIENET_MRMAC) {
 		axienet_mdio_enable(lp);
 		axienet_mdio_wait_until_ready(lp);
-		mutex_unlock(&lp->mii_bus->mdio_lock);
+		axienet_unlock_mii(lp);
 	}
 
 	for (i = 0; i < lp->tx_bd_num; i++) {
