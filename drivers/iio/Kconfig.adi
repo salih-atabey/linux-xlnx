@@ -7,6 +7,7 @@
 config IIO_ALL_ADI_DRIVERS
 	tristate "Build all Analog Devices IIO Drivers"
 	select AD9528
+	select ADRV9009
 	select AXI_ADXCVR
 	select AXI_JESD204_TX
 	select AXI_JESD204_RX
