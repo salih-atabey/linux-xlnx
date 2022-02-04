@@ -4121,6 +4121,7 @@ CONFIG_IIO_CONSUMERS_PER_TRIGGER=2
 # CONFIG_AD7923 is not set
 # CONFIG_AD7949 is not set
 # CONFIG_AD799X is not set
+CONFIG_ADRV9009=y
 # CONFIG_CC10001_ADC is not set
 # CONFIG_ENVELOPE_DETECTOR is not set
 # CONFIG_HI8435 is not set
@@ -4240,6 +4241,13 @@ CONFIG_XILINX_XADC=y
 #
 
 #
+# Direct Digital Synthesis
+#
+CONFIG_CF_AXI_DDS=y
+# CONFIG_CF_AXI_DDS_AD9122 is not set
+# end of Direct Digital Synthesis
+
+#
 # Clock Generator/Distribution
 #
 # CONFIG_AD9523 is not set
@@ -4308,6 +4316,14 @@ CONFIG_AD9528=y
 # CONFIG_INV_MPU6050_SPI is not set
 # CONFIG_IIO_ST_LSM6DSX is not set
 # end of Inertial measurement units
+
+#
+# JESD204 High-Speed Serial Interface Support
+#
+CONFIG_AXI_ADXCVR=y
+CONFIG_AXI_JESD204_RX=y
+CONFIG_AXI_JESD204_TX=y
+# end of JESD204 High-Speed Serial Interface Support
 
 #
 # Light sensors
