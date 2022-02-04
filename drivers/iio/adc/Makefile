@@ -22,6 +22,21 @@ obj-$(CONFIG_AD7793) += ad7793.o
 obj-$(CONFIG_AD7887) += ad7887.o
 obj-$(CONFIG_AD7949) += ad7949.o
 obj-$(CONFIG_AD799X) += ad799x.o
+adrv9009_drv-y := adrv9009.o adrv9009_conv.o \
+	talise/talise_agc.o \
+	talise/talise_arm.o \
+	talise/talise.o \
+	talise/talise_cals.o \
+	talise/talise_error.o \
+	talise/talise_gpio.o \
+	talise/talise_hal.o \
+	talise/talise_jesd204.o \
+	talise/talise_radioctrl.o \
+	talise/talise_rx.o \
+	talise/talise_tx.o \
+	talise/talise_user.o \
+	talise/linux_hal.o
+obj-$(CONFIG_ADRV9009) += adrv9009_drv.o
 obj-$(CONFIG_ASPEED_ADC) += aspeed_adc.o
 obj-$(CONFIG_AT91_ADC) += at91_adc.o
 obj-$(CONFIG_AT91_SAMA5D2_ADC) += at91-sama5d2_adc.o
@@ -30,6 +45,8 @@ obj-$(CONFIG_AXP288_ADC) += axp288_adc.o
 obj-$(CONFIG_BCM_IPROC_ADC) += bcm_iproc_adc.o
 obj-$(CONFIG_BERLIN2_ADC) += berlin2-adc.o
 obj-$(CONFIG_CC10001_ADC) += cc10001_adc.o
+cf_axi_adc-y := cf_axi_adc_core.o
+obj-$(CONFIG_CF_AXI_ADC) += cf_axi_adc.o
 obj-$(CONFIG_CPCAP_ADC) += cpcap-adc.o
 obj-$(CONFIG_DA9150_GPADC) += da9150-gpadc.o
 obj-$(CONFIG_DLN2_ADC) += dln2-adc.o
