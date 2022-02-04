@@ -206,6 +206,14 @@ config AD799X
 
 	  To compile this driver as a module, choose M here: the module will be
 	  called ad799x.
+	  
+config ADRV9009
+	tristate "Analog Devices ADRV9009/ADRV9008 RF Transceiver driver"
+	depends on SPI
+	help
+	  Say yes here to build support for Analog Devices:
+	  ADRV9009/ADRV9008 RF Transceivers. Provides direct access
+	  via sysfs.
 
 config ASPEED_ADC
 	tristate "Aspeed ADC"
@@ -293,6 +301,21 @@ config CC10001_ADC
 
 	  This driver can also be built as a module. If so, the module will be
 	  called cc10001_adc.
+	  
+config CF_AXI_ADC
+	tristate "Analog Devices High-Speed AXI ADC driver core"
+	select IIO_BUFFER
+	select IIO_BUFFER_HW_CONSUMER
+	select IIO_BUFFER_DMAENGINE
+	help
+	  Say yes here to build support for Analog Devices AD9467 and AD9643,
+	  High-Speed LVDS analog to digital converters (ADC).
+	  FPGA interface HDL is available here:
+	  http://wiki.analog.com/resources/fpga/xilinx/fmc/ad9467
+	  If unsure, say N (but it's safe to say "Y").
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called cf_axi_adc.
 
 config CPCAP_ADC
 	tristate "Motorola CPCAP PMIC ADC driver"
