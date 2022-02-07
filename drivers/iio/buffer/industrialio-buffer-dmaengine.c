@@ -12,6 +12,7 @@
 #include <linux/err.h>
 
 #include <linux/iio/iio.h>
+#include <linux/iio/sysfs.h>
 #include <linux/iio/buffer.h>
 #include <linux/iio/buffer_impl.h>
 #include <linux/iio/buffer-dma.h>
@@ -146,6 +147,19 @@ static const struct iio_dma_buffer_ops iio_dmaengine_default_ops = {
 	.abort = iio_dmaengine_buffer_abort,
 };
 #endif
+
+static ssize_t iio_dmaengine_buffer_get_length_align(struct device *dev,
+	struct device_attribute *attr, char *buf)
+{
+	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+	struct dmaengine_buffer *dmaengine_buffer =
+		iio_buffer_to_dmaengine_buffer(indio_dev->buffer);
+
+	return sprintf(buf, "%zu\n", dmaengine_buffer->align);
+}
+
+static IIO_DEVICE_ATTR(length_align_bytes, 0444,
+		       iio_dmaengine_buffer_get_length_align, NULL, 0);
 
 static const struct attribute *iio_dmaengine_buffer_attrs[] = {
 	&iio_dev_attr_length_align_bytes.dev_attr.attr,

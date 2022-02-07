@@ -598,6 +598,8 @@ int iio_dma_buffer_set_length(struct iio_buffer *buffer, unsigned int length)
 }
 EXPORT_SYMBOL_GPL(iio_dma_buffer_set_length);
 
+static u64 dmamask = DMA_BIT_MASK(64);
+
 /**
  * iio_dma_buffer_init() - Initialize DMA buffer queue
  * @queue: Buffer to initialize
