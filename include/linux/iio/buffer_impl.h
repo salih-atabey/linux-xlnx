@@ -9,6 +9,8 @@
 struct iio_dev;
 struct iio_buffer;
 
+#define IIO_BUFFER_BLOCK_FLAG_CYCLIC (1 << 1)
+
 /**
  * INDIO_BUFFER_FLAG_FIXED_WATERMARK - Watermark level of the buffer can not be
  *   configured. It has a fixed value which will be buffer specific.
